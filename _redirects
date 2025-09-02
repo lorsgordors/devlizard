@@ -1,5 +1,0 @@
-# Redirect quem-somos pages
-/quem-somos/* /quem-somos/index.html 200
-
-# Handle SPA routing - redirect all other routes to main page
-/* /index.html 404
