@@ -97,7 +97,7 @@
             <div class="cta-content">
                 <h3>Pronto para inovar?</h3>
                 <p>Vamos transformar sua ideia em realidade digital</p>
-                <button class="cta-button">Fale Conosco</button>
+                <a href="./contato.html" class="cta-button" style="display: inline-block; text-decoration: none;">Fale Conosco</a>
             </div>
         </section>
 
@@ -180,21 +180,14 @@
             const contactForm = document.querySelector('.form-contato');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Mensagem enviada com sucesso! ✅\nEntraremos em contato em breve. 🚀');
-                this.reset();
-            });
-            const projectCard = document.querySelector('.action-card:first-child');
-            const teamCard = document.querySelector('#quem-somos');
-            const feedbackCard = document.querySelector('#feedbacks');
-            projectCard.addEventListener('click', function() {
-                alert('Em breve nosso portfólio estará disponível! 💼');
-            });
-                    teamCard.addEventListener('click', function() {
-                        window.open('./quem-somos/', '_blank');
-                    });
-            feedbackCard.addEventListener('click', function() {
-                alert('Seção de feedbacks em desenvolvimento! ⭐');
-            });
+                nav.classList.remove('open');
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                        menuBtn.classList.remove('open');
+                    }
+                });
+            }
+            
+            // Animação do logo
             const logo = document.querySelector('.logo');
             logo.addEventListener('mouseenter', function() {
                 this.style.animation = 'float 1s ease-in-out, pulse 1.5s ease-in-out';
@@ -202,6 +195,29 @@
             logo.addEventListener('mouseleave', function() {
                 this.style.animation = 'float 4.5s ease-in-out infinite';
             });
+            
+            // Interações dos cards
+            const projectCard = document.querySelector('.action-card:first-child');
+            const teamCard = document.querySelector('#quem-somos');
+            const feedbackCard = document.querySelector('#feedbacks');
+            
+            if (projectCard) {
+                projectCard.addEventListener('click', function() {
+                    alert('Em breve nosso portfólio estará disponível! 💼');
+                });
+            }
+            
+            if (teamCard) {
+                teamCard.addEventListener('click', function() {
+                    window.open('./quem-somos/', '_blank');
+                });
+            }
+            
+            if (feedbackCard) {
+                feedbackCard.addEventListener('click', function() {
+                    alert('Seção de feedbacks em desenvolvimento! ⭐');
+                });
+            }
         });
     </script>
 </body>
