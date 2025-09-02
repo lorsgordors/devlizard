@@ -1,0 +1,13 @@
+{
+  "name": "devlizard",
+  "version": "1.0.0",
+  "description": "DevLizard - Static website",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build process needed for static site'",
+    "start": "echo 'Serving static files'"
+  },
+  "keywords": ["static", "website", "devlizard"],
+  "author": "DevLizard Team",
+  "license": "MIT"
+}
