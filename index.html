@@ -174,13 +174,19 @@
         document.addEventListener('DOMContentLoaded', function() {
             const menuBtn = document.querySelector('.menu-toggle');
             const nav = document.getElementById('site-nav');
+            
+            // Menu mobile toggle
             if(menuBtn && nav){
-                menuBtn.addEventListener('click', () => {
+                menuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
                     const isOpen = nav.classList.toggle('open');
                     menuBtn.setAttribute('aria-expanded', String(isOpen));
                     menuBtn.classList.toggle('open', isOpen);
                 });
-                nav.addEventListener('click', (e) => {
+                
+                // Fechar menu ao clicar em link
+                nav.addEventListener('click', function(e) {
                     const target = e.target;
                     if(target && target.tagName === 'A' && nav.classList.contains('open')){
                         nav.classList.remove('open');
@@ -188,15 +194,11 @@
                         menuBtn.classList.remove('open');
                     }
                 });
-            }
-            const ctaButton = document.querySelector('.cta-button');
-            ctaButton.addEventListener('click', function() {
-                document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
-            });
-            const contactForm = document.querySelector('.form-contato');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                nav.classList.remove('open');
+                
+                // Fechar menu ao clicar fora
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !menuBtn.contains(e.target) && nav.classList.contains('open')) {
+                        nav.classList.remove('open');
                         menuBtn.setAttribute('aria-expanded', 'false');
                         menuBtn.classList.remove('open');
                     }
@@ -205,35 +207,48 @@
             
             // Animação do logo
             const logo = document.querySelector('.logo');
-            logo.addEventListener('mouseenter', function() {
-                this.style.animation = 'float 1s ease-in-out, pulse 1.5s ease-in-out';
-            });
-            logo.addEventListener('mouseleave', function() {
-                this.style.animation = 'float 4.5s ease-in-out infinite';
-            });
+            if (logo) {
+                logo.addEventListener('mouseenter', function() {
+                    this.style.animation = 'float 1s ease-in-out, pulse 1.5s ease-in-out';
+                });
+                logo.addEventListener('mouseleave', function() {
+                    this.style.animation = 'float 4.5s ease-in-out infinite';
+                });
+            }
             
             // Interações dos cards
-            const projectCard = document.querySelector('.action-card:first-child');
-            const teamCard = document.querySelector('#quem-somos');
-            const feedbackCard = document.querySelector('#feedbacks');
+            const actionCards = document.querySelectorAll('.action-card');
             
-            if (projectCard) {
-                projectCard.addEventListener('click', function() {
-                    alert('Em breve nosso portfólio estará disponível! 💼');
+            actionCards.forEach(function(card, index) {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Card de Projetos (primeiro)
+                    if (index === 0) {
+                        alert('Em breve nosso portfólio estará disponível! 💼');
+                    }
+                    // Card de Quem Somos (segundo)
+                    else if (index === 1 || card.id === 'quem-somos') {
+                        window.location.href = './quem-somos/';
+                    }
+                    // Card de Feedbacks (terceiro)
+                    else if (index === 2 || card.id === 'feedbacks') {
+                        alert('Seção de feedbacks em desenvolvimento! ⭐');
+                    }
                 });
-            }
-            
-            if (teamCard) {
-                teamCard.addEventListener('click', function() {
-                    window.open('./quem-somos/', '_blank');
-                });
-            }
-            
-            if (feedbackCard) {
-                feedbackCard.addEventListener('click', function() {
-                    alert('Seção de feedbacks em desenvolvimento! ⭐');
-                });
-            }
+                
+                // Feedback visual para touch
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-2px) scale(0.98)';
+                }, { passive: true });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                }, { passive: true });
+            });
         });
     </script>
 </body>
