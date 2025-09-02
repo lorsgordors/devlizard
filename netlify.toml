@@ -1,18 +1,2 @@
 [build]
-  # No build command needed for static sites
-  command = "echo 'Static site - no build needed'"
-  
-  # Specify the directory to deploy (root directory in this case)
   publish = "."
-
-# Configure redirects for single page application behavior if needed
-[[redirects]]
-  from = "/quem-somos/*"
-  to = "/quem-somos/index.html"
-  status = 200
-
-# Handle 404 errors
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
