@@ -11,206 +11,344 @@
     <style>
         html { scroll-behavior: smooth; }
         
-        /* Melhorias específicas para a página de contato */
+        /* Background moderno com partículas */
+        body {
+            background: #0f0f23;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #1a1a2e 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #16213e 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, #0f3460 0%, transparent 50%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Partículas animadas no fundo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 150px;
+            animation: sparkle 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Hero moderno */
         .contact-hero {
             text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            border-radius: 20px;
-            margin-bottom: 60px;
+            padding: 80px 30px 60px;
+            margin-bottom: 40px;
         }
         
         .contact-hero h1 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #00d4ff, #a8e6cf, #ffd93d);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            font-weight: 900;
+            animation: gradientMove 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .contact-hero .subtitle {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.6;
         }
         
+        /* Container do formulário */
         .contact-container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
+        /* Formulário tipo card flutuante */
         .contact-form {
-            background: #fff;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            border-radius: 30px;
             padding: 50px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid #e1e8ed;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #a8e6cf, #ffd93d, #ff6b9d);
+            background-size: 400% 400%;
+            animation: gradientMove 3s ease-in-out infinite;
         }
         
         .contact-form h2 {
-            color: #333;
-            font-size: 2rem;
+            color: #ffffff;
+            font-size: 2.2rem;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 600;
         }
         
         .contact-form .form-description {
             text-align: center;
-            color: #666;
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 40px;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.5;
         }
         
+        /* Layout sem grid - campos individuais */
         .form-group {
-            margin-bottom: 30px;
+            position: relative;
+            margin-bottom: 25px;
         }
         
-        .form-row {
-            display: block;
-            margin-bottom: 0;
-        }
-        
+        /* Labels fixos no topo */
         .form-group label {
             display: block;
-            color: #333;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 18px 22px;
-            border: 2px solid #e1e8ed;
-            border-radius: 12px;
+            height: 60px;
+            padding: 18px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: #ffffff;
             font-size: 16px;
-            transition: all 0.3s ease;
             font-family: inherit;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-sizing: border-box;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            padding-top: 18px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            opacity: 1;
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-            transform: translateY(-1px);
+            border-color: #00d4ff;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
         }
-        /* Estados de erro/sucesso */
+        
+        /* Validação moderna */
         .form-group .error-text {
-            color: #e53e3e;
-            font-size: 0.9rem;
-            margin-top: 8px;
+            position: absolute;
+            bottom: -22px;
+            left: 0px;
+            color: #ff6b9d;
+            font-size: 0.8rem;
             display: none;
+            opacity: 0;
+            animation: fadeInUp 0.3s ease-out forwards;
         }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .form-group.is-invalid input,
         .form-group.is-invalid textarea {
-            border-color: #e53e3e;
-            box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.12);
+            border-color: #ff6b9d;
+            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.2);
         }
-        .form-group.is-invalid .error-text { display: block; }
+        
+        .form-group.is-invalid .error-text {
+            display: block;
+        }
+        
+        .form-group.is-invalid label {
+            color: #ff6b9d !important;
+        }
+        
+        /* Alertas */
         .form-alert {
-            border: 1px solid transparent;
+            padding: 20px 25px;
             border-radius: 12px;
-            padding: 14px 16px;
-            margin: 0 0 20px;
+            margin-bottom: 30px;
             display: none;
+            backdrop-filter: blur(10px);
+            border: 1px solid transparent;
         }
+        
         .form-alert.success {
             display: block;
-            border-color: #c6f6d5;
-            background: #f0fff4;
-            color: #276749;
+            background: rgba(168, 230, 207, 0.2);
+            border-color: rgba(168, 230, 207, 0.4);
+            color: #a8e6cf;
         }
+        
         .form-alert.error {
             display: block;
-            border-color: #fed7d7;
-            background: #fff5f5;
-            color: #9b2c2c;
+            background: rgba(255, 107, 157, 0.2);
+            border-color: rgba(255, 107, 157, 0.4);
+            color: #ff6b9d;
         }
         
-        .form-group input:hover,
-        .form-group textarea:hover {
-            border-color: #667eea;
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-            line-height: 1.6;
-        }
-        
+        /* Botão com efeito holográfico */
         .btn-send {
             width: 100%;
-            max-width: 300px;
-            margin: 20px auto 0;
-            display: block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            height: 65px;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #00d4ff, #a8e6cf, #ffd93d);
+            background-size: 300% 300%;
             border: none;
-            padding: 20px 40px;
-            border-radius: 12px;
-            font-size: 1.2rem;
+            border-radius: 15px;
+            color: #000;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: none;
-            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: gradientMove 4s ease-in-out infinite;
+        }
+        
+        .btn-send::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
         }
         
         .btn-send:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4);
+            filter: brightness(1.1);
+        }
+        
+        .btn-send:hover::before {
+            left: 100%;
         }
         
         .btn-send:active {
             transform: translateY(-1px);
         }
+        
         .btn-send[disabled] {
-            opacity: .7;
+            opacity: 0.6;
             cursor: not-allowed;
-            box-shadow: none;
             transform: none;
+            box-shadow: none;
         }
         
+        /* Link de volta */
         .back-link {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .back-link a {
-            color: #667eea;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
         
         .back-link a:hover {
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             text-decoration: none;
         }
         
-        /* Responsivo */
+        /* Responsividade */
         @media (max-width: 768px) {
+            .contact-hero {
+                padding: 60px 20px 40px;
+            }
+            
             .contact-hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            
+            .contact-hero .subtitle {
+                font-size: 1.2rem;
             }
             
             .contact-form {
-                padding: 30px 25px;
-                margin: 0 20px;
-            }
-            
-            .contact-hero {
-                margin: 0 20px 40px;
-                padding: 30px 20px;
+                padding: 40px 25px;
+                margin: 0 15px;
+                border-radius: 25px;
             }
             
             .form-group {
@@ -219,35 +357,80 @@
             
             .form-group input,
             .form-group textarea {
-                padding: 15px 18px;
+                height: 55px;
+                padding: 16px 20px;
+            }
+            
+            .form-group textarea {
+                height: 110px;
+                padding-top: 16px;
             }
             
             .btn-send {
-                max-width: none;
-                margin: 15px 0 0;
-                padding: 18px 30px;
-                font-size: 1.1rem;
+                height: 60px;
+                font-size: 1rem;
             }
         }
         
         @media (max-width: 480px) {
-            .contact-form {
-                padding: 25px 20px;
-                margin: 0 15px;
+            .contact-hero h1 {
+                font-size: 2rem;
             }
             
-            .contact-hero {
-                margin: 0 15px 30px;
-                padding: 25px 15px;
+            .contact-hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+                margin: 0 10px;
+                border-radius: 20px;
             }
             
             .contact-form h2 {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
             
-            .contact-form .form-description {
-                font-size: 1rem;
+            .form-group {
+                margin-bottom: 18px;
             }
+            
+            .form-group input,
+            .form-group textarea {
+                height: 50px;
+                padding: 14px 18px;
+            }
+            
+            .form-group textarea {
+                height: 100px;
+                padding-top: 14px;
+            }
+            
+            .btn-send {
+                height: 55px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Animações de entrada */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .contact-hero,
+        .contact-form {
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .contact-form {
+            animation-delay: 0.2s;
         }
     </style>
 </head>
@@ -278,50 +461,55 @@
 
     <main class="container">
         <div class="contact-hero">
-            <h1>💬 Fale Conosco</h1>
-            <p class="subtitle">Vamos transformar sua ideia em realidade digital. Entre em contato e conte-nos sobre seu projeto!</p>
+            <h1>� Vamos Criar Algo Incrível</h1>
+            <p class="subtitle">Transforme sua visão em realidade digital. Conte-nos sua ideia e vamos construir o futuro juntos!</p>
         </div>
 
         <div class="contact-container" id="contato">
             <div class="contact-form">
-                <h2>📧 Envie sua Mensagem</h2>
-                <p class="form-description">Preencha o formulário abaixo e nossa equipe entrará em contato em breve.</p>
+                <h2>💫 Fale Conosco</h2>
+                <p class="form-description">Preencha os campos abaixo e nossa equipe especializada entrará em contato para dar vida ao seu projeto.</p>
                 <div class="form-alert" id="form-alert" role="status" aria-live="polite"></div>
                 
                 <form action="https://formspree.io/f/xkgvvajd" method="POST" class="form-contato" novalidate>
-                    <div class="form-row">
-                        <div class="form-group" id="group-name">
-                            <label for="name">Nome Completo</label>
-                            <input type="text" id="name" name="name" autocomplete="name" required placeholder="Seu nome" />
-                            <p class="error-text">Por favor, informe seu nome.</p>
-                        </div>
-                        
-                        <div class="form-group" id="group-email">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" autocomplete="email" required placeholder="voce@exemplo.com" />
-                            <p class="error-text">Informe um e-mail válido.</p>
-                        </div>
+                    <br>
+                    <div class="form-group" id="group-nome">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="name" autocomplete="name" required placeholder=" " />
+                        <p class="error-text">Nome é obrigatório</p>
                     </div>
                     
-                    <div class="form-group" id="group-subject">
-                        <label for="subject">Assunto</label>
-                        <input type="text" id="subject" name="subject" placeholder="Ex: Desenvolvimento de site, app mobile, consultoria..." required />
-                        <p class="error-text">Conte o assunto da mensagem.</p>
+                    <div class="form-group" id="group-email">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required placeholder=" " />
+                        <p class="error-text">E-mail válido é obrigatório</p>
                     </div>
                     
-                    <div class="form-group" id="group-message">
-                        <label for="message">Mensagem</label>
-                        <textarea id="message" name="message" placeholder="Conte-nos sobre seu projeto, objetivos e prazos. Quanto mais detalhes, melhor poderemos ajudá-lo!" required></textarea>
-                        <p class="error-text">Escreva uma mensagem.</p>
+                    <div class="form-group" id="group-assunto">
+                        <label for="assunto">Assunto:</label>
+                        <input type="text" id="assunto" name="subject" required placeholder=" " />
+                        <p class="error-text">Informe o assunto do seu projeto</p>
                     </div>
+                    
+                    <div class="form-group" id="group-descricao">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" name="message" required placeholder=" "></textarea>
+                        <p class="error-text">Descreva seu projeto em detalhes</p>
+                    </div>
+                    
                     <!-- honeypot anti-spam -->
                     <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
                     
-                    <button type="submit" class="btn-send">🚀 Enviar Mensagem</button>
+                    <button type="submit" class="btn-send">
+                        ✨ Enviar Projeto
+                    </button>
                 </form>
                 
                 <div class="back-link">
-                    <a href="./index.html">← Voltar ao site</a>
+                    <a href="./index.html">
+                        <span>←</span>
+                        <span>Voltar ao Site</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -342,7 +530,7 @@
                     <h4>Contato</h4>
                     <div class="contact-info">
                         <p>📧 devlizardltda@gmail.com</p>
-                        <p>🌐 Brasília, DF</p>
+                        <p>🌐 Juiz de Fora, MG</p>
                     </div>
                 </div>
 
@@ -366,6 +554,7 @@
     <script src="./navigation.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Animação da logo
             const logo = document.querySelector('.logo');
             if (logo) {
                 logo.addEventListener('mouseenter', function() {
@@ -376,7 +565,46 @@
                 });
             }
 
-            // Validação e envio com feedback
+            // Efeito de typing nos placeholders dinâmicos
+            const descricaoField = document.getElementById('descricao');
+            const projectIdeas = [
+                'Preciso de um site moderno para minha empresa...',
+                'Quero desenvolver um aplicativo mobile...',
+                'Preciso de uma loja virtual completa...',
+                'Tenho uma startup e preciso de tecnologia...',
+                'Quero modernizar meu sistema atual...',
+                'Preciso de consultoria em transformação digital...'
+            ];
+            
+            let currentIndex = 0;
+            let currentChar = 0;
+            let isDeleting = false;
+            
+            function typeEffect() {
+                if (!descricaoField || document.activeElement === descricaoField) return;
+                
+                const currentText = projectIdeas[currentIndex];
+                
+                if (!isDeleting && currentChar <= currentText.length) {
+                    descricaoField.setAttribute('placeholder', currentText.substring(0, currentChar));
+                    currentChar++;
+                    setTimeout(typeEffect, 50);
+                } else if (isDeleting && currentChar >= 0) {
+                    descricaoField.setAttribute('placeholder', currentText.substring(0, currentChar));
+                    currentChar--;
+                    setTimeout(typeEffect, 30);
+                } else if (!isDeleting && currentChar > currentText.length) {
+                    setTimeout(() => { isDeleting = true; typeEffect(); }, 2000);
+                } else if (isDeleting && currentChar < 0) {
+                    isDeleting = false;
+                    currentIndex = (currentIndex + 1) % projectIdeas.length;
+                    setTimeout(typeEffect, 500);
+                }
+            }
+            
+            setTimeout(typeEffect, 1000);
+
+            // Sistema de validação e envio aprimorado
             const form = document.querySelector('.form-contato');
             const alertBox = document.getElementById('form-alert');
             const submitBtn = document.querySelector('.btn-send');
@@ -384,7 +612,17 @@
             function setAlert(type, message) {
                 if (!alertBox) return;
                 alertBox.className = 'form-alert ' + type;
-                alertBox.textContent = message;
+                alertBox.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 12px; font-size: 16px;">
+                        <span style="font-size: 1.5rem;">${type === 'success' ? '🎉' : '⚠️'}</span>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                // Scroll suave para o alerta
+                setTimeout(() => {
+                    alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
             }
 
             function clearErrors() {
@@ -394,47 +632,155 @@
             function validate() {
                 clearErrors();
                 let valid = true;
-                const name = document.getElementById('name');
-                const email = document.getElementById('email');
-                const subject = document.getElementById('subject');
-                const message = document.getElementById('message');
+                
+                const fields = [
+                    { id: 'nome', group: 'group-nome', validate: v => v.trim().length >= 2 },
+                    { id: 'email', group: 'group-email', validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+                    { id: 'assunto', group: 'group-assunto', validate: v => v.trim().length >= 5 },
+                    { id: 'descricao', group: 'group-descricao', validate: v => v.trim().length >= 10 }
+                ];
 
-                if (!name.value.trim()) { document.getElementById('group-name').classList.add('is-invalid'); valid = false; }
-                const emailVal = email.value.trim();
-                const emailOk = /.+@.+\..+/.test(emailVal);
-                if (!emailOk) { document.getElementById('group-email').classList.add('is-invalid'); valid = false; }
-                if (!subject.value.trim()) { document.getElementById('group-subject').classList.add('is-invalid'); valid = false; }
-                if (!message.value.trim()) { document.getElementById('group-message').classList.add('is-invalid'); valid = false; }
+                fields.forEach(field => {
+                    const element = document.getElementById(field.id);
+                    if (element && !field.validate(element.value)) {
+                        document.getElementById(field.group).classList.add('is-invalid');
+                        valid = false;
+                    }
+                });
+
                 return valid;
             }
 
+            // Validação em tempo real com efeitos visuais
+            ['nome', 'email', 'assunto', 'descricao'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    // Efeito de foco
+                    input.addEventListener('focus', function() {
+                        this.parentElement.style.transform = 'scale(1.02)';
+                        this.parentElement.style.zIndex = '10';
+                    });
+
+                    input.addEventListener('blur', function() {
+                        this.parentElement.style.transform = 'scale(1)';
+                        this.parentElement.style.zIndex = '1';
+                        
+                        // Revalidar campo ao perder foco
+                        const group = document.getElementById(`group-${id}`);
+                        if (group.classList.contains('is-invalid')) {
+                            setTimeout(() => {
+                                validate();
+                            }, 100);
+                        }
+                    });
+
+                    // Limpeza de erro durante digitação
+                    input.addEventListener('input', function() {
+                        const group = document.getElementById(`group-${id}`);
+                        if (group.classList.contains('is-invalid') && this.value.trim()) {
+                            group.classList.remove('is-invalid');
+                        }
+                    });
+                }
+            });
+
             if (form) {
                 form.addEventListener('submit', async function(e) {
-                    // Envio com AJAX + feedback
                     e.preventDefault();
                     setAlert('', '');
+                    
                     if (!validate()) {
-                        setAlert('error', 'Verifique os campos destacados.');
+                        setAlert('error', 'Por favor, corrija os campos destacados antes de enviar.');
                         const firstError = document.querySelector('.form-group.is-invalid input, .form-group.is-invalid textarea');
-                        if (firstError) firstError.focus();
+                        if (firstError) {
+                            firstError.focus();
+                            firstError.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
                         return;
                     }
+
                     try {
+                        // Animação de loading elegante
                         submitBtn.disabled = true;
+                        const originalContent = submitBtn.innerHTML;
+                        submitBtn.innerHTML = `
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <div style="width: 20px; height: 20px; border: 2px solid transparent; border-top: 2px solid currentColor; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                                <span>Enviando...</span>
+                            </div>
+                        `;
+                        
                         const data = new FormData(form);
-                        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+                        const res = await fetch(form.action, { 
+                            method: 'POST', 
+                            body: data, 
+                            headers: { 'Accept': 'application/json' } 
+                        });
+                        
                         if (res.ok) {
                             form.reset();
-                            setAlert('success', 'Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                            setAlert('success', 'Projeto enviado com sucesso! Nossa equipe entrará em contato em até 24 horas para discutir sua ideia.');
+                            
+                            // Efeito de celebração
+                            createCelebration();
                         } else {
-                            setAlert('error', 'Não foi possível enviar agora. Tente novamente em instantes.');
+                            setAlert('error', 'Ops! Algo deu errado. Tente novamente em alguns instantes ou entre em contato pelo email.');
                         }
                     } catch (err) {
-                        setAlert('error', 'Falha de rede ao enviar. Verifique sua conexão.');
+                        console.error('Erro ao enviar:', err);
+                        setAlert('error', 'Erro de conexão. Verifique sua internet e tente novamente.');
                     } finally {
                         submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalContent;
                     }
                 });
+            }
+
+            // Efeito de celebração aprimorado
+            function createCelebration() {
+                const colors = ['#00d4ff', '#a8e6cf', '#ffd93d', '#ff6b9d'];
+                const shapes = ['circle', 'square', 'triangle'];
+                
+                for (let i = 0; i < 80; i++) {
+                    const particle = document.createElement('div');
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    particle.style.position = 'fixed';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.top = '-20px';
+                    particle.style.width = (5 + Math.random() * 10) + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.backgroundColor = color;
+                    particle.style.pointerEvents = 'none';
+                    particle.style.zIndex = '9999';
+                    particle.style.borderRadius = shape === 'circle' ? '50%' : '0';
+                    particle.style.transform = shape === 'triangle' ? 'rotate(45deg)' : 'none';
+                    particle.style.boxShadow = `0 0 10px ${color}`;
+                    
+                    document.body.appendChild(particle);
+                    
+                    const animation = particle.animate([
+                        { 
+                            transform: `translateY(-20px) rotate(0deg) scale(0)`, 
+                            opacity: 0 
+                        },
+                        { 
+                            transform: `translateY(50vh) rotate(180deg) scale(1)`, 
+                            opacity: 1,
+                            offset: 0.3
+                        },
+                        { 
+                            transform: `translateY(100vh) rotate(360deg) scale(0)`, 
+                            opacity: 0 
+                        }
+                    ], {
+                        duration: 2000 + Math.random() * 3000,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    });
+                    
+                    animation.addEventListener('finish', () => particle.remove());
+                }
             }
         });
     </script>
