@@ -98,6 +98,38 @@
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
             transform: translateY(-1px);
         }
+        /* Estados de erro/sucesso */
+        .form-group .error-text {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            display: none;
+        }
+        .form-group.is-invalid input,
+        .form-group.is-invalid textarea {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.12);
+        }
+        .form-group.is-invalid .error-text { display: block; }
+        .form-alert {
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin: 0 0 20px;
+            display: none;
+        }
+        .form-alert.success {
+            display: block;
+            border-color: #c6f6d5;
+            background: #f0fff4;
+            color: #276749;
+        }
+        .form-alert.error {
+            display: block;
+            border-color: #fed7d7;
+            background: #fff5f5;
+            color: #9b2c2c;
+        }
         
         .form-group input:hover,
         .form-group textarea:hover {
@@ -135,6 +167,12 @@
         
         .btn-send:active {
             transform: translateY(-1px);
+        }
+        .btn-send[disabled] {
+            opacity: .7;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
         }
         
         .back-link {
@@ -244,33 +282,40 @@
             <p class="subtitle">Vamos transformar sua ideia em realidade digital. Entre em contato e conte-nos sobre seu projeto!</p>
         </div>
 
-        <div class="contact-container">
+        <div class="contact-container" id="contato">
             <div class="contact-form">
                 <h2>📧 Envie sua Mensagem</h2>
                 <p class="form-description">Preencha o formulário abaixo e nossa equipe entrará em contato em breve.</p>
+                <div class="form-alert" id="form-alert" role="status" aria-live="polite"></div>
                 
-                <form action="https://formspree.io/f/xkgvvajd" method="POST">
+                <form action="https://formspree.io/f/xkgvvajd" method="POST" class="form-contato" novalidate>
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group" id="group-name">
                             <label for="name">Nome Completo</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" autocomplete="name" required placeholder="Seu nome" />
+                            <p class="error-text">Por favor, informe seu nome.</p>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" id="group-email">
                             <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" autocomplete="email" required placeholder="voce@exemplo.com" />
+                            <p class="error-text">Informe um e-mail válido.</p>
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group" id="group-subject">
                         <label for="subject">Assunto</label>
-                        <input type="text" id="subject" name="subject" placeholder="Ex: Desenvolvimento de site, app mobile, consultoria..." required>
+                        <input type="text" id="subject" name="subject" placeholder="Ex: Desenvolvimento de site, app mobile, consultoria..." required />
+                        <p class="error-text">Conte o assunto da mensagem.</p>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group" id="group-message">
                         <label for="message">Mensagem</label>
                         <textarea id="message" name="message" placeholder="Conte-nos sobre seu projeto, objetivos e prazos. Quanto mais detalhes, melhor poderemos ajudá-lo!" required></textarea>
+                        <p class="error-text">Escreva uma mensagem.</p>
                     </div>
+                    <!-- honeypot anti-spam -->
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
                     
                     <button type="submit" class="btn-send">🚀 Enviar Mensagem</button>
                 </form>
@@ -322,14 +367,75 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logo = document.querySelector('.logo');
-            
-            logo.addEventListener('mouseenter', function() {
-                this.style.animation = 'pulse 0.6s ease-in-out';
-            });
-            
-            logo.addEventListener('mouseleave', function() {
-                this.style.animation = 'float 4.5s ease-in-out infinite';
-            });
+            if (logo) {
+                logo.addEventListener('mouseenter', function() {
+                    this.style.animation = 'pulse 0.6s ease-in-out';
+                });
+                logo.addEventListener('mouseleave', function() {
+                    this.style.animation = 'float 4.5s ease-in-out infinite';
+                });
+            }
+
+            // Validação e envio com feedback
+            const form = document.querySelector('.form-contato');
+            const alertBox = document.getElementById('form-alert');
+            const submitBtn = document.querySelector('.btn-send');
+
+            function setAlert(type, message) {
+                if (!alertBox) return;
+                alertBox.className = 'form-alert ' + type;
+                alertBox.textContent = message;
+            }
+
+            function clearErrors() {
+                document.querySelectorAll('.form-group').forEach(g => g.classList.remove('is-invalid'));
+            }
+
+            function validate() {
+                clearErrors();
+                let valid = true;
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const subject = document.getElementById('subject');
+                const message = document.getElementById('message');
+
+                if (!name.value.trim()) { document.getElementById('group-name').classList.add('is-invalid'); valid = false; }
+                const emailVal = email.value.trim();
+                const emailOk = /.+@.+\..+/.test(emailVal);
+                if (!emailOk) { document.getElementById('group-email').classList.add('is-invalid'); valid = false; }
+                if (!subject.value.trim()) { document.getElementById('group-subject').classList.add('is-invalid'); valid = false; }
+                if (!message.value.trim()) { document.getElementById('group-message').classList.add('is-invalid'); valid = false; }
+                return valid;
+            }
+
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    // Envio com AJAX + feedback
+                    e.preventDefault();
+                    setAlert('', '');
+                    if (!validate()) {
+                        setAlert('error', 'Verifique os campos destacados.');
+                        const firstError = document.querySelector('.form-group.is-invalid input, .form-group.is-invalid textarea');
+                        if (firstError) firstError.focus();
+                        return;
+                    }
+                    try {
+                        submitBtn.disabled = true;
+                        const data = new FormData(form);
+                        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+                        if (res.ok) {
+                            form.reset();
+                            setAlert('success', 'Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                        } else {
+                            setAlert('error', 'Não foi possível enviar agora. Tente novamente em instantes.');
+                        }
+                    } catch (err) {
+                        setAlert('error', 'Falha de rede ao enviar. Verifique sua conexão.');
+                    } finally {
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
         });
     </script>
 </body>
