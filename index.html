@@ -113,7 +113,7 @@
 
                 <div class="contact-form">
                     <h4>Envie sua Mensagem</h4>
-                    <form class="form-contato" action="https://formspree.io/f/xkgvvajd" method="POST">
+                    <form class="form-contato" name="contact" action="https://formspree.io/f/xkgvvajd" method="POST">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Seu Nome" required>
                             <input type="email" name="email" placeholder="Seu E-mail" required>
@@ -200,28 +200,6 @@
             logo.addEventListener('mouseleave', function() {
                 this.style.animation = 'float 4.5s ease-in-out infinite';
             });
-        });
-
-        // Formulário de contato com feedback visual
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('.form-contato');
-            
-            if (form) {
-                form.addEventListener('submit', function() {
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    // Mostrar loading
-                    submitBtn.innerHTML = '📧 Enviando...';
-                    submitBtn.disabled = true;
-                    
-                    // Restaurar depois de um tempo (caso não redirecione)
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }, 3000);
-                });
-            }
         });
     </script>
 </body>
