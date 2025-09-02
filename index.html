@@ -10,6 +10,46 @@
     <link rel="stylesheet" href="./Aba Principal/style.css" />
     <style>
         html { scroll-behavior: smooth; }
+        
+        /* Layout vertical - uma seção embaixo da outra */
+        main.container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        main section {
+            margin-bottom: 80px;
+            width: 100%;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .services-preview,
+        .cards,
+        .cta-section,
+        .contact-section {
+            width: 100%;
+            clear: both;
+        }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            main section {
+                margin-bottom: 60px;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            main.container {
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -36,18 +76,21 @@
         </div>
     </header>
 
-    <main class="container hero">
-        <span class="tag">✨ Inovação Digital</span>
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="tag">✨ Inovação Digital</span>
+            <div class="headline">
+                <h2>
+                    Combinamos <span class="highlight">instinto</span> e <span class="highlight">inovação</span> para transformar ideias em soluções reais.
+                    <br />
+                    <strong>DevLizard – Instinto que gera inovação.</strong>
+                </h2>
+                <p class="subtitle">Desenvolvemos soluções tecnológicas com a agilidade e adaptabilidade de um lagarto, sempre prontos para os desafios do futuro digital.</p>
+            </div>
+        </section>
 
-        <div class="headline">
-            <h2>
-                Combinamos <span class="highlight">instinto</span> e <span class="highlight">inovação</span> para transformar ideias em soluções reais.
-                <br />
-                <strong>DevLizard – Instinto que gera inovação.</strong>
-            </h2>
-            <p class="subtitle">Desenvolvemos soluções tecnológicas com a agilidade e adaptabilidade de um lagarto, sempre prontos para os desafios do futuro digital.</p>
-        </div>
-
+        <!-- Serviços Section -->
         <section class="services-preview">
             <h3>Nossos Serviços</h3>
             <div class="service-cards">
@@ -69,6 +112,7 @@
             </div>
         </section>
 
+        <!-- Projetos Section -->
         <section class="cards" id="projetos">
             <div class="card action-card">
                 <div class="card-icon">💼</div>
@@ -90,6 +134,7 @@
             </div>
         </section>
 
+        <!-- CTA Section -->
         <section class="cta-section">
             <div class="cta-content">
                 <h3>Pronto para inovar?</h3>
@@ -98,6 +143,7 @@
             </div>
         </section>
 
+        <!-- Contato Section -->
         <section class="contact-section" id="contato">
            
         </section>
