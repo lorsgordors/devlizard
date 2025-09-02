@@ -1,13 +1,9 @@
 [build]
   # No build command needed for static sites
-  command = ""
+  command = "echo 'Static site - no build needed'"
   
   # Specify the directory to deploy (root directory in this case)
   publish = "."
-
-[build.environment]
-  # Skip any build process
-  NODE_ENV = "production"
 
 # Configure redirects for single page application behavior if needed
 [[redirects]]

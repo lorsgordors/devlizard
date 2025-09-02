@@ -4,7 +4,7 @@
   "description": "DevLizard - Static website",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'No build process needed for static site'",
+    "build": "echo 'Static site ready for deployment'",
     "start": "echo 'Serving static files'"
   },
   "keywords": ["static", "website", "devlizard"],
