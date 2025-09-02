@@ -113,10 +113,10 @@
 
                 <div class="contact-form">
                     <h4>Envie sua Mensagem</h4>
-                    <form class="form-contato" id="contact-form">
+                    <form class="form-contato" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                         <div class="form-group">
-                            <input type="text" name="user_name" placeholder="Seu Nome" required>
-                            <input type="email" name="user_email" placeholder="Seu E-mail" required>
+                            <input type="text" name="name" placeholder="Seu Nome" required>
+                            <input type="email" name="email" placeholder="Seu E-mail" required>
                         </div>
                         <div class="form-group">
                             <input type="text" name="subject" placeholder="Assunto" required>
@@ -201,113 +201,28 @@
                 this.style.animation = 'float 4.5s ease-in-out infinite';
             });
         });
-    </script>
 
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    
-    <!-- Formulário de Contato -->
-    <script type="text/javascript">
-        // Inicializar EmailJS
-        (function(){
-            emailjs.init({
-                publicKey: "SEU_PUBLIC_KEY_AQUI", // Você vai substituir isso
-            });
-        })();
-
-        // Função para enviar email
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Mostrar loading
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '📧 Enviando...';
-            submitBtn.disabled = true;
-
-            // Enviar email
-            emailjs.sendForm('SEU_SERVICE_ID', 'SEU_TEMPLATE_ID', this)
-                .then(() => {
-                    // Sucesso
-                    submitBtn.innerHTML = '✅ Enviado!';
-                    submitBtn.style.backgroundColor = '#10B981';
+        // Formulário de contato com feedback visual
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.form-contato');
+            
+            if (form) {
+                form.addEventListener('submit', function() {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
                     
-                    // Reset do formulário
-                    this.reset();
+                    // Mostrar loading
+                    submitBtn.innerHTML = '📧 Enviando...';
+                    submitBtn.disabled = true;
                     
-                    // Mostrar mensagem de sucesso
-                    showNotification('Mensagem enviada com sucesso! 🎉', 'success');
-                    
-                    // Restaurar botão depois de 3 segundos
+                    // Restaurar depois de um tempo (caso não redirecione)
                     setTimeout(() => {
                         submitBtn.innerHTML = originalText;
-                        submitBtn.style.backgroundColor = '';
-                        submitBtn.disabled = false;
-                    }, 3000);
-                }, (error) => {
-                    // Erro
-                    console.error('Erro ao enviar:', error);
-                    submitBtn.innerHTML = '❌ Erro ao enviar';
-                    submitBtn.style.backgroundColor = '#EF4444';
-                    
-                    showNotification('Erro ao enviar mensagem. Tente novamente.', 'error');
-                    
-                    // Restaurar botão depois de 3 segundos
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.style.backgroundColor = '';
                         submitBtn.disabled = false;
                     }, 3000);
                 });
+            }
         });
-
-        // Função para mostrar notificações
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = message;
-            
-            // Estilos da notificação
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 25px;
-                border-radius: 8px;
-                color: white;
-                font-weight: bold;
-                z-index: 10000;
-                animation: slideIn 0.3s ease-out;
-                max-width: 300px;
-                ${type === 'success' ? 'background: #10B981;' : 'background: #EF4444;'}
-            `;
-            
-            // Adicionar animação
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            document.body.appendChild(notification);
-            
-            // Remover depois de 5 segundos
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease-out';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 5000);
-        }
     </script>
 </body>
 </html>
