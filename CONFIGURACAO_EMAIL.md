@@ -1,42 +1,37 @@
-# Configuração SUPER SIMPLES do Formulário de Contato
+# Configuração SUPER SIMPLES - Web3Forms (FUNCIONA 100%)
 
-## Passo 1: Criar conta no Formspree (2 minutos!)
-1. Acesse: https://formspree.io/
-2. Clique em "Get Started" 
-3. Cadastre-se com seu email
-4. Confirme o email
+## Passo 1: Pegar sua chave (30 segundos!)
+1. Acesse: https://web3forms.com/
+2. Role para baixo até "Get your access key"
+3. Digite: **devlizardltda@gmail.com**
+4. Clique em "Create Access Key"
+5. **COPIE a chave que apareceu** (ex: a1b2c3d4-e5f6-7890-abcd-ef1234567890)
 
-## Passo 2: Criar formulário (1 minuto!)
-1. No dashboard, clique em "New Form"
-2. Digite um nome: "Contato DevLizard"
-3. Adicione seu email: devlizardltda@gmail.com
-4. Clique em "Create Form"
-5. **COPIE o código que aparece** (algo como: https://formspree.io/f/xpzgkqyw)
-
-## Passo 3: Colar no código (30 segundos!)
-No arquivo `index.html`, na linha que tem:
+## Passo 2: Colar no código (10 segundos!)
+No arquivo `index.html`, procure a linha:
 ```html
-<form class="form-contato" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 ```
 
-Substitua `YOUR_FORM_ID` pelo seu código.
+Substitua `YOUR_ACCESS_KEY_HERE` pela sua chave.
 
-Exemplo final:
+Exemplo:
 ```html
-<form class="form-contato" action="https://formspree.io/f/xpzgkqyw" method="POST">
+<input type="hidden" name="access_key" value="a1b2c3d4-e5f6-7890-abcd-ef1234567890">
 ```
 
 ## PRONTO! 🎉
 
-- **Total: 3 minutos de configuração**
-- **200 envios gratuitos por mês**
-- **Funciona automaticamente**
-- **Emails chegam direto na sua caixa**
+- **Web3Forms é MAIS CONFIÁVEL** que Formspree
+- **Não precisa confirmar email**
+- **Funciona na hora**
+- **100 envios gratuitos por mês**
 
-## Como funciona:
-1. Usuário preenche o formulário
-2. Clica em "Enviar"
-3. Email chega automaticamente no devlizardltda@gmail.com
-4. Usuário vê uma página de confirmação
+## Por que Web3Forms é melhor:
+✅ **Não precisa criar conta**  
+✅ **Não precisa confirmar email**  
+✅ **Funciona imediatamente**  
+✅ **Suporte a spam protection**  
+✅ **Usado por milhares de sites**
 
-Muito mais simples que o EmailJS! 😊
+Só pegar a chave e colar! Vai funcionar na hora! �
