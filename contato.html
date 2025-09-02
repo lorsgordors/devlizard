@@ -432,6 +432,52 @@
         .contact-form {
             animation-delay: 0.2s;
         }
+        
+        /* CSS para menu mobile */
+        .menu-toggle{
+            display:none;
+            width:42px; height:42px; border-radius:10px;
+            border:1px solid rgba(255,255,255,.15);
+            background: rgba(0,0,0,.35);
+            align-items:center; justify-content:center;
+            gap:4px; flex-direction:column; cursor:pointer;
+            transition: .25s ease;
+            z-index: 1001;
+            position: relative;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .menu-toggle:hover{ background: rgba(255,255,255,.06); }
+        .menu-toggle:active{ background: rgba(255,255,255,.12); }
+        .menu-toggle span{
+            display:block; width:20px; height:2px; background:#fff;
+            border-radius:2px; transition: transform .25s ease, opacity .25s ease;
+        }
+        .menu-toggle.open span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2){ opacity:0; }
+        .menu-toggle.open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+        
+        /* Responsivo para mobile */
+        @media (max-width:800px){
+            .menu-toggle{display:flex;}
+            header .bar{gap:10px;}
+            header nav{
+                position: absolute; right: 16px; top: 62px;
+                background: rgba(0,0,0,.9);
+                border: 1px solid rgba(255,255,255,.12);
+                border-radius: 12px;
+                padding: 10px;
+                box-shadow: 0 12px 30px rgba(0,0,0,.4);
+                transform-origin: top right;
+                transform: scale(.98);
+                opacity: 0; pointer-events: none;
+                transition: opacity .2s ease, transform .2s ease;
+                z-index: 1000;
+            }
+            header nav.open{ opacity: 1; pointer-events: all; transform: scale(1); }
+            header nav ul{flex-direction: column; gap: 8px;}
+            header nav a{display:flex; min-width: 190px; justify-content: space-between; padding:10px 12px;}
+        }
     </style>
 </head>
 <body>
@@ -554,6 +600,39 @@
     <script src="./navigation.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Menu mobile toggle
+            const menuBtn = document.querySelector('.menu-toggle');
+            const nav = document.getElementById('site-nav');
+            
+            if(menuBtn && nav){
+                menuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isOpen = nav.classList.toggle('open');
+                    menuBtn.setAttribute('aria-expanded', String(isOpen));
+                    menuBtn.classList.toggle('open', isOpen);
+                });
+                
+                // Fechar menu ao clicar em link
+                nav.addEventListener('click', function(e) {
+                    const target = e.target;
+                    if(target && target.tagName === 'A' && nav.classList.contains('open')){
+                        nav.classList.remove('open');
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                        menuBtn.classList.remove('open');
+                    }
+                });
+                
+                // Fechar menu ao clicar fora
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !menuBtn.contains(e.target) && nav.classList.contains('open')) {
+                        nav.classList.remove('open');
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                        menuBtn.classList.remove('open');
+                    }
+                });
+            }
+            
             // Animação da logo
             const logo = document.querySelector('.logo');
             if (logo) {
