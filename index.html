@@ -35,84 +35,6 @@
             width: 100%;
             clear: both;
         }
-
-        /* Formulário de contato (escopo na home) */
-        .contact-section {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
-            border-radius: 20px;
-            padding: 30px 20px;
-        }
-
-        .contact-box {
-            background: #fff;
-            border: 1px solid #e1e8ed;
-            border-radius: 16px;
-            padding: 28px;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 14px 30px rgba(0,0,0,0.08);
-        }
-
-        .contact-box h3 {
-            margin: 0 0 10px;
-            font-size: 1.8rem;
-            color: #333;
-            text-align: center;
-        }
-
-        .contact-box .form-description {
-            text-align: center;
-            color: #666;
-            margin: 0 0 24px;
-        }
-
-        .contact-box .form-group { margin-bottom: 16px; }
-        .contact-box label {
-            display: block;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-        }
-        .contact-box input,
-        .contact-box textarea {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e1e8ed;
-            border-radius: 12px;
-            font: inherit;
-            transition: all .25s ease;
-            box-sizing: border-box;
-            background: #fff;
-        }
-        .contact-box input:hover,
-        .contact-box textarea:hover { border-color: #667eea; }
-        .contact-box input:focus,
-        .contact-box textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
-        }
-        .contact-box textarea { min-height: 140px; resize: vertical; }
-
-        .contact-box .btn-send {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff;
-            border: 0;
-            padding: 14px 22px;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-        .contact-box .btn-send:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(102,126,234,.35); }
-        .contact-actions { text-align: center; margin-top: 8px; }
-
-        /* Responsivo do formulário */
-        @media (max-width: 768px) {
-            .contact-section { padding: 20px 14px; }
-            .contact-box { padding: 20px; }
-        }
         
         /* Responsivo */
         @media (max-width: 768px) {
@@ -217,40 +139,13 @@
             <div class="cta-content">
                 <h3>Pronto para inovar?</h3>
                 <p>Vamos transformar sua ideia em realidade digital</p>
-                <a href="#contato" class="cta-button" style="display: inline-block; text-decoration: none;">Fale Conosco</a>
+                <a href="./contato.html" class="cta-button" style="display: inline-block; text-decoration: none;">Fale Conosco</a>
             </div>
         </section>
 
         <!-- Contato Section -->
         <section class="contact-section" id="contato">
-            <div class="contact-box">
-                <h3>💬 Fale Conosco</h3>
-                <p class="form-description">Quer tirar sua ideia do papel? Envie sua mensagem e retornaremos em breve.</p>
-                <form action="https://formspree.io/f/xkgvvajd" method="POST" class="form-contato" novalidate>
-                    <div class="form-group">
-                        <label for="home-name">Nome completo</label>
-                        <input type="text" id="home-name" name="name" autocomplete="name" required placeholder="Seu nome" />
-                    </div>
-                    <div class="form-group">
-                        <label for="home-email">E-mail</label>
-                        <input type="email" id="home-email" name="email" autocomplete="email" required placeholder="voce@exemplo.com" />
-                    </div>
-                    <div class="form-group">
-                        <label for="home-subject">Assunto</label>
-                        <input type="text" id="home-subject" name="subject" required placeholder="Sobre o que gostaria de falar?" />
-                    </div>
-                    <div class="form-group">
-                        <label for="home-message">Mensagem</label>
-                        <textarea id="home-message" name="message" required placeholder="Conte um pouco do seu projeto, objetivos e prazos."></textarea>
-                    </div>
-                    <!-- Anti-spam simples (honeypot) -->
-                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-                    
-                    <div class="contact-actions">
-                        <button type="submit" class="btn-send">🚀 Enviar mensagem</button>
-                    </div>
-                </form>
-            </div>
+           
         </section>
     </main>
 
@@ -279,7 +174,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const menuBtn = document.querySelector('.menu-toggle');
             const nav = document.getElementById('site-nav');
-            if (menuBtn && nav) {
+            if(menuBtn && nav){
                 menuBtn.addEventListener('click', () => {
                     const isOpen = nav.classList.toggle('open');
                     menuBtn.setAttribute('aria-expanded', String(isOpen));
@@ -287,39 +182,53 @@
                 });
                 nav.addEventListener('click', (e) => {
                     const target = e.target;
-                    if (target && target.tagName === 'A' && nav.classList.contains('open')) {
+                    if(target && target.tagName === 'A' && nav.classList.contains('open')){
                         nav.classList.remove('open');
                         menuBtn.setAttribute('aria-expanded', 'false');
                         menuBtn.classList.remove('open');
                     }
                 });
             }
-
-            // Animação do logo
-            const logo = document.querySelector('.logo');
-            if (logo) {
-                logo.addEventListener('mouseenter', function() {
-                    this.style.animation = 'float 1s ease-in-out, pulse 1.5s ease-in-out';
-                });
-                logo.addEventListener('mouseleave', function() {
-                    this.style.animation = 'float 4.5s ease-in-out infinite';
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.addEventListener('click', function() {
+                document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+            });
+            const contactForm = document.querySelector('.form-contato');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                nav.classList.remove('open');
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                        menuBtn.classList.remove('open');
+                    }
                 });
             }
-
+            
+            // Animação do logo
+            const logo = document.querySelector('.logo');
+            logo.addEventListener('mouseenter', function() {
+                this.style.animation = 'float 1s ease-in-out, pulse 1.5s ease-in-out';
+            });
+            logo.addEventListener('mouseleave', function() {
+                this.style.animation = 'float 4.5s ease-in-out infinite';
+            });
+            
             // Interações dos cards
             const projectCard = document.querySelector('.action-card:first-child');
             const teamCard = document.querySelector('#quem-somos');
             const feedbackCard = document.querySelector('#feedbacks');
+            
             if (projectCard) {
                 projectCard.addEventListener('click', function() {
                     alert('Em breve nosso portfólio estará disponível! 💼');
                 });
             }
+            
             if (teamCard) {
                 teamCard.addEventListener('click', function() {
                     window.open('./quem-somos/', '_blank');
                 });
             }
+            
             if (feedbackCard) {
                 feedbackCard.addEventListener('click', function() {
                     alert('Seção de feedbacks em desenvolvimento! ⭐');
