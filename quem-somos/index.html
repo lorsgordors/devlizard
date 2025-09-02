@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DevLizard | Quem Somos</title>
+  <link rel="canonical" href="../quem-somos/" />
+  <meta name="description" content="Conheça a equipe DevLizard e nossa história: instinto que gera inovação." />
+  <link rel="icon" href="../Logos e Capas/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../Aba Quem somos/Style-fixed.css">
+  <link rel="preload" href="../Aba Quem somos/interactions.js" as="script">
+</head>
+<body>
+  <header>
+    <div class="container bar">
+      <div class="brand">
+        <img class="logo" src="../Aba Quem somos/logo.png" alt="Logo DevLizard" />
+        <h1>DevLizard</h1>
+      </div>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-controls="site-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav aria-label="principal" id="site-nav">
+        <ul>
+          <li><a href="../index.html">🏠 Início</a></li>
+          <li><a href="../index.html#contato">✉️ Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header" data-animate>
+      <h1>Nossa Equipe</h1>
+      <p class="typing" data-typing>Três amigos, uma visão compartilhada</p>
+      <div class="cta-row">
+        <a class="btn btn-secondary" href="../index.html#contato">Fale conosco</a>
+      </div>
+    </div>
+
+    <div class="team-grid" data-animate>
+      <div class="team-member">
+        <div class="member-photo">
+          <img src="../Aba Quem somos/Israel.jpeg" alt="Israel" loading="lazy" decoding="async" width="160" height="160">
+        </div>
+        <div class="member-details">
+          <h3>Israel</h3>
+          <span class="member-role">Comercial & Marketing</span>
+          <p>Especialista em estratégias comerciais e marketing digital. Responsável por expandir negócios e relacionamento com clientes.</p>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="member-photo">
+          <img src="../Aba Quem somos/Igor.jpeg" alt="Igor Costa" loading="lazy" decoding="async" width="160" height="160">
+        </div>
+        <div class="member-details">
+          <h3>Igor Costa</h3>
+          <span class="member-role">Administrativo & Hardware</span>
+          <p>Gerencia processos administrativos e infraestrutura tecnológica. Especialista em hardware e manutenção de sistemas.</p>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="member-photo">
+          <img src="../Aba Quem somos/Lucas.jpeg" alt="Lucas" loading="lazy" decoding="async" width="160" height="160">
+        </div>
+        <div class="member-details">
+          <h3>Lucas</h3>
+          <span class="member-role">Gestão Econômica</span>
+          <p>Perfil versátil com conhecimentos em design, administração, financeiro, leitura gráfica, cálculo e projeções. Especialista em IA.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="company-story" data-animate>
+      <div class="story-content">
+        <h2>Nossa História</h2>
+        <p>
+          Somos os <strong>"Calanguinhos"</strong> — três amigos de infância que cresceram juntos
+          e decidiram transformar paixão por tecnologia em negócio. Nossa jornada começou na escola
+          e hoje construímos soluções inovadoras juntos.
+        </p>
+        <p>
+          O que começou como brincadeira e criatividade se tornou uma jornada de propósito e sucesso,
+          mostrando que, quando há amizade, confiança e visão, sonhos de infância podem se tornar
+          conquistas reais. Com isso nasceu a <strong>"DevLizard"</strong>.
+        </p>
+        <div class="story-highlight">
+          <span class="company-name">DevLizard</span>
+          <span class="company-motto">Instinto que gera inovação</span>
+        </div>
+      </div>
+      <div class="story-visual">
+        <img src="../Aba Quem somos/logo.png" alt="DevLizard" class="company-logo" loading="lazy" decoding="async" width="160" height="160" />
+      </div>
+    </section>
+
+    <div class="back-to-home">
+      <a href="../index.html" class="btn-home">🏠 Voltar ao Início</a>
+    </div>
+  </main>
+
+  <footer>© 2025 DevLizard — Todos os direitos reservados</footer>
+  <script src="../Aba Quem somos/interactions.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const menuBtn = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('site-nav');
+      if(menuBtn && nav){
+        menuBtn.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('open');
+          menuBtn.setAttribute('aria-expanded', String(isOpen));
+          menuBtn.classList.toggle('open', isOpen);
+        });
+        nav.addEventListener('click', (e) => {
+          const t = e.target;
+          if(t && t.tagName === 'A' && nav.classList.contains('open')){
+            nav.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.classList.remove('open');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

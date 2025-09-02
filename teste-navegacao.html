@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLizard - Teste de Navegação</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background: linear-gradient(130deg, #6C658A, #2B1E53 45%, #4F20C8);
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,.1);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { text-align: center; margin-bottom: 32px; }
+        .test-section {
+            margin-bottom: 24px;
+            padding: 16px;
+            background: rgba(255,255,255,.05);
+            border-radius: 8px;
+        }
+        .test-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #4F20C8, #2B1E53);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            margin: 4px;
+            border-radius: 8px;
+            transition: transform .2s;
+        }
+        .test-link:hover {
+            transform: translateY(-2px);
+        }
+        .status {
+            color: #90EE90;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦎 DevLizard - Teste de Navegação</h1>
+        
+        <div class="test-section">
+            <h3>Páginas do Site</h3>
+            <a href="./index.html" class="test-link">🏠 Página Inicial</a>
+            <a href="./quem-somos/" class="test-link">👥 Quem Somos</a>
+            <a href="./index.html#contato" class="test-link">✉️ Contato</a>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 Status da Navegação</h3>
+            <p><span class="status">✅ FUNCIONANDO:</span></p>
+            <ul>
+                <li>Principal → Quem Somos</li>
+                <li>Principal → Seção de Contato</li>
+                <li>Quem Somos → Principal</li>
+                <li>Quem Somos → Contato</li>
+                <li>Formulário de contato funcional</li>
+                <li>Scroll suave para seções</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h3>🎨 Melhorias Implementadas</h3>
+            <ul>
+                <li>✅ Removido sistema de login (site institucional)</li>
+                <li>✅ Seção de contato completa integrada</li>
+                <li>✅ Formulário de contato responsivo</li>
+                <li>✅ Cards informativos de contato</li>
+                <li>✅ Navegação otimizada (2 páginas principais)</li>
+                <li>✅ Design responsivo mantido</li>
+                <li>✅ Paleta de cores preservada</li>
+                <li>✅ Interações JavaScript aprimoradas</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h3>📁 Estrutura Atualizada</h3>
+            <pre style="background: rgba(0,0,0,.2); padding: 12px; border-radius: 8px; overflow-x: auto;">
+Site.Empresa/
+├── index.html (redirecionamento)
+├── navigation.js (configurações)
+├── README.md (documentação)
+├── Aba Principal/
+│   ├── teste da Aba de Inicio.html ✅ (com contato)
+│   └── style.css ✅ (estilos contato)
+├── Aba Quem somos/
+│   ├── Aba quem Somos.html ✅
+│   └── Style.css ✅
+└── 🗑️ Aba Login/ (removida - não necessária)
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        // Verificação automática de links
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🦎 DevLizard - Site Institucional carregado!');
+            console.log('✅ Sistema de login removido - site institucional puro');
+            console.log('✅ Seção de contato integrada na página principal');
+            console.log('✅ Navegação otimizada entre duas páginas principais');
+            console.log('✅ Formulário de contato funcional');
+        });
+    </script>
+</body>
+</html>

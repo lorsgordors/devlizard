@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <title>DevLizard Login</title>
+
+  <style>
+   
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container bar">
+      <div class="brand">
+        <!-- 👉 Troque o caminho abaixo para o arquivo da sua logo -->
+        <img class="logo" src="logo.png" alt="Logo LizardTech" />
+        <h1>DevLizard Login</h1>
+      </div>
+
+      <button class="menu-toggle" aria-label="Abrir menu" aria-controls="site-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav aria-label="principal" id="site-nav">
+        <ul>
+          <li><a href="../Aba Principal/teste da Aba de Inicio.html">🏠 Início</a></li>
+          <li><a href="../Aba Principal/teste da Aba de Inicio.html#projetos">🚀 Projetos</a></li>
+          <li><a href="../Aba Quem somos/Aba quem Somos.html">👥 Equipe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+      <div class="headline">
+        <form method="POST" class="formLogin">
+            <h1>Login</h1>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <label for="email">E-mail</label>
+            <input type="email" placeholder="Digite seu e-mail" autofocus="true" />
+            <label for="password">Senha</label>
+            <input type="password" placeholder="Digite seu e-mail" />
+            <a href="/">Esqueci minha senha</a>
+            <input type="submit" value="Acessar" class="btn" />
+        </form>
+    </div>
+
+    <!-- Botão para voltar ao início -->
+    <div class="back-to-home">
+      <a href="../Aba Principal/teste da Aba de Inicio.html" class="btn-home">
+        🏠 Voltar ao Início
+      </a>
+    </div>
+
+  <footer>© 2025 DevLizard — Todos os direitos reservados</footer>
+
+  <script>
+    // Mobile menu toggle (Login)
+    document.addEventListener('DOMContentLoaded', function(){
+      const menuBtn = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('site-nav');
+      if(menuBtn && nav){
+        menuBtn.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('open');
+          menuBtn.setAttribute('aria-expanded', String(isOpen));
+          menuBtn.classList.toggle('open', isOpen);
+        });
+        nav.addEventListener('click', (e) => {
+          const t = e.target;
+          if(t && t.tagName === 'A' && nav.classList.contains('open')){
+            nav.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.classList.remove('open');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
