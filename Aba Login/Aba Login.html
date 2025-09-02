@@ -7,7 +7,116 @@
   <title>DevLizard Login</title>
 
   <style>
-   
+    /* Background moderno com partículas - mesmo estilo da página contato */
+    body {
+      background: #0f0f23 !important;
+      background-image: 
+          radial-gradient(circle at 25% 25%, #1a1a2e 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, #16213e 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, #0f3460 0%, transparent 50%) !important;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Partículas animadas no fundo */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+          radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.4), transparent),
+          radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.6), transparent);
+      background-repeat: repeat;
+      background-size: 200px 150px;
+      animation: sparkle 20s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    /* Container com z-index */
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Forms e cards modernizados */
+    .card, form, .login-form {
+      background: rgba(255, 255, 255, 0.05) !important;
+      backdrop-filter: blur(25px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 18px !important;
+      padding: 30px 25px !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Títulos modernizados */
+    h1, h2, h3 {
+      background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7, #60A5FA) !important;
+      background-size: 300% 300% !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      animation: gradientMove 4s ease-in-out infinite !important;
+      text-shadow: 0 0 30px rgba(124, 58, 237, 0.3) !important;
+    }
+    
+    /* Inputs modernizados */
+    input, textarea, select {
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 2px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 15px !important;
+      color: #ffffff !important;
+      padding: 15px 20px !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      backdrop-filter: blur(10px) !important;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none !important;
+      border-color: #7C3AED !important;
+      background: rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1) !important;
+      transform: translateY(-2px) !important;
+    }
+    
+    /* Botões modernizados */
+    button, .btn, input[type="submit"] {
+      background: linear-gradient(135deg, #4C1D95, #7C3AED) !important;
+      padding: 15px 30px !important;
+      border-radius: 15px !important;
+      font-weight: 600 !important;
+      border: none !important;
+      color: white !important;
+      cursor: pointer !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3) !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+    }
+    
+    button:hover, .btn:hover, input[type="submit"]:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 15px 40px rgba(0, 153, 204, 0.4) !important;
+      background: linear-gradient(135deg, #00f0ff, #00b8e6) !important;
+    }
   </style>
 </head>
 <body>

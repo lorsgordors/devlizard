@@ -9,9 +9,9 @@ const navigation = {
             path: './Aba Quem somos/Aba quem Somos.html',
             title: '👥 Equipe'
         },
-        login: {
-            path: './Aba Login/Aba Login.html',
-            title: '🔐 Login'
+        contact: {
+            path: './contato.html',
+            title: '✉️ Contato'
         }
     },
     
@@ -20,13 +20,13 @@ const navigation = {
         const paths = {
             'Home': {
                 'Aba Quem somos': './Aba Quem somos/Aba quem Somos.html',
-                'Aba Login': './Aba Login/Aba Login.html'
+                'Contato': './contato.html'
             },
             'Aba Quem somos': {
                 'Home': '../index.html',
-                'Aba Login': '../Aba Login/Aba Login.html'
+                'Contato': '../contato.html'
             },
-            'Aba Login': {
+            'Contato': {
                 'Home': '../index.html',
                 'Aba Quem somos': '../Aba Quem somos/Aba quem Somos.html'
             }

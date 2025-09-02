@@ -8,6 +8,451 @@
   <meta name="description" content="Conheça a equipe DevLizard e nossa história: instinto que gera inovação." />
   <link rel="icon" href="../Logos e Capas/logo.png" type="image/png" />
   <link rel="stylesheet" href="../Aba Quem somos/Style-fixed.css">
+  <style>
+    /* Background moderno com partículas - mesmo estilo da página contato */
+    body {
+      background: #0f0f23 !important;
+      background-image: 
+          radial-gradient(circle at 25% 25%, #1a1a2e 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, #16213e 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, #0f3460 0%, transparent 50%) !important;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Partículas animadas no fundo */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+          radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.4), transparent),
+          radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.6), transparent);
+      background-repeat: repeat;
+      background-size: 200px 150px;
+      animation: sparkle 20s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    /* Container com z-index */
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Header elegante com detalhes refinados */
+    .page-header {
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.06) 100%) !important;
+      backdrop-filter: blur(20px) saturate(150%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 24px !important;
+      padding: 35px 40px !important;
+      margin: 40px auto 60px !important;
+      max-width: 650px !important;
+      box-shadow: 
+        0 8px 32px rgba(124, 58, 237, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+      position: relative !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      text-align: center !important;
+      overflow: visible !important;
+    }
+    
+    /* Linha decorativa sutil no topo */
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #7C3AED, #A855F7);
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+    
+    /* Pequeno acento decorativo */
+    .page-header::after {
+      content: '✦';
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      color: rgba(168, 85, 247, 0.4);
+      font-size: 14px;
+    }
+    
+    /* Efeito hover refinado */
+    .page-header:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 
+        0 12px 40px rgba(124, 58, 237, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+      border-color: rgba(124, 58, 237, 0.25) !important;
+    }
+    
+    .page-header:hover::before {
+      width: 80px;
+      opacity: 0.8;
+    }
+    
+    /* Conteúdo da caixa */
+    .page-header > * {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Responsividade para mobile */
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 25px 20px !important;
+        margin: 20px 15px 40px !important;
+        border-radius: 18px !important;
+        backdrop-filter: blur(15px) !important;
+        box-shadow: 
+          0 6px 24px rgba(124, 58, 237, 0.06),
+          0 3px 12px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      .page-header::before {
+        width: 40px;
+        height: 1.5px;
+      }
+      
+      .page-header::after {
+        top: 12px;
+        right: 16px;
+        font-size: 12px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .page-header {
+        padding: 20px 16px !important;
+        margin: 15px 10px 35px !important;
+        border-radius: 16px !important;
+      }
+    }
+    }
+    
+    /* Sutil efeito de borda que aparece no hover */
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.05) 0%, 
+        rgba(168, 85, 247, 0.03) 50%, 
+        rgba(96, 165, 250, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    
+    /* Pequenos detalhes nos cantos */
+    .page-header::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 4px;
+      height: 4px;
+      background: linear-gradient(45deg, #7C3AED, #A855F7);
+      border-radius: 50%;
+      box-shadow: 
+        -8px 0 0 -1px rgba(124, 58, 237, 0.6),
+        -16px 0 0 -1px rgba(168, 85, 247, 0.4),
+        0 8px 0 -1px rgba(168, 85, 247, 0.6),
+        0 16px 0 -1px rgba(96, 165, 250, 0.4);
+    }
+    
+    /* Efeito hover sutil */
+    .page-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(124, 58, 237, 0.12),
+        0 6px 20px rgba(0, 0, 0, 0.15) !important;
+      border-color: rgba(124, 58, 237, 0.25) !important;
+    }
+    
+    .page-header:hover::before {
+      opacity: 1;
+    }
+    
+    /* Conteúdo da caixa */
+    .page-header > * {
+      position: relative;
+      z-index: 2;
+    }
+    
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 25% 50%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 75% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @-webkit-keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 25% 50%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 75% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Aplicar gradiente animado a TODOS os títulos */
+    h1, h2, h3, h4, .brand h1 {
+      background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7, #60A5FA) !important;
+      background-size: 400% 400% !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      color: transparent !important;
+      animation: gradientMove 3s ease-in-out infinite !important;
+      -webkit-animation: gradientMove 3s ease-in-out infinite !important;
+      font-weight: bold !important;
+      /* Fallback para navegadores que não suportam background-clip */
+      background-attachment: fixed;
+    }
+    
+    /* Garantir que a animação funcione */
+    @supports (-webkit-background-clip: text) {
+      h1, h2, h3, h4, .brand h1 {
+        background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7, #60A5FA) !important;
+        background-size: 400% 400% !important;
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        animation: gradientMove 3s ease-in-out infinite !important;
+      }
+    }
+    
+    /* Título principal maior */
+    .page-header h1 {
+      font-size: 3rem !important;
+      font-weight: 900 !important;
+      margin-bottom: 25px !important;
+      letter-spacing: -0.02em;
+    }
+    
+    /* Subtítulo melhorado */
+    .page-header p {
+      font-size: 1.3rem !important;
+      color: rgba(255, 255, 255, 0.8) !important;
+      margin-bottom: 35px !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+    }
+    
+    /* Container do botão */
+    .cta-row {
+      margin-top: 25px;
+    }
+    
+    /* Team cards totalmente transparentes sem blur */
+    .team-member {
+      background: rgba(0, 0, 0, 0.15) !important;
+      backdrop-filter: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      border-radius: 18px !important;
+      padding: 30px 25px !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .team-member:hover {
+      background: rgba(0, 0, 0, 0.25) !important;
+      transform: translateY(-8px) !important;
+      border-color: rgba(124, 58, 237, 0.4) !important;
+      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15) !important;
+    }
+    
+    /* Botões modernizados com efeito holográfico */
+    .btn {
+      background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7) !important;
+      background-size: 300% 300% !important;
+      animation: gradientMove 3s ease-in-out infinite !important;
+      -webkit-animation: gradientMove 3s ease-in-out infinite !important;
+      padding: 18px 40px !important;
+      border-radius: 15px !important;
+      font-weight: 600 !important;
+      font-size: 1.1rem !important;
+      border: none !important;
+      color: white !important;
+      cursor: pointer !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 
+        0 12px 35px rgba(124, 58, 237, 0.35),
+        0 4px 15px rgba(0, 0, 0, 0.2) !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.02em;
+    }
+    
+    /* Efeito de brilho no botão */
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
+    
+    .btn:hover::before {
+      left: 100%;
+    }
+    
+    .btn:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 
+        0 18px 50px rgba(124, 58, 237, 0.45),
+        0 8px 25px rgba(0, 0, 0, 0.3) !important;
+      background: linear-gradient(135deg, #7C3AED, #4C1D95, #A855F7) !important;
+    }
+    
+    /* Responsividade para mobile */
+    @media (max-width: 768px) {
+      /* Caixa Nossa Equipe responsiva */
+      .page-header {
+        padding: 40px 25px !important;
+        margin-bottom: 40px !important;
+        border-radius: 20px !important;
+        box-shadow: 
+          0 15px 50px rgba(124, 58, 237, 0.15),
+          0 8px 20px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+      }
+      
+      /* Título menor no mobile */
+      .page-header h1 {
+        font-size: 2.2rem !important;
+        margin-bottom: 20px !important;
+        letter-spacing: -0.01em !important;
+      }
+      
+      /* Subtítulo menor */
+      .page-header p {
+        font-size: 1.1rem !important;
+        margin-bottom: 30px !important;
+        padding: 0 10px;
+      }
+      
+      /* Botão adaptado para mobile */
+      .btn {
+        padding: 15px 30px !important;
+        font-size: 1rem !important;
+        border-radius: 12px !important;
+        box-shadow: 
+          0 8px 25px rgba(124, 58, 237, 0.3),
+          0 3px 10px rgba(0, 0, 0, 0.2) !important;
+      }
+      
+      .btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 
+          0 12px 35px rgba(124, 58, 237, 0.4),
+          0 5px 15px rgba(0, 0, 0, 0.25) !important;
+      }
+      
+      /* Partículas menores no mobile */
+      .page-header::after {
+        background-size: 100px 80px !important;
+        animation: sparkle 20s linear infinite !important;
+      }
+      
+      /* Hover menos intenso no mobile */
+      .page-header:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 
+          0 20px 60px rgba(124, 58, 237, 0.2),
+          0 10px 30px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+      }
+    }
+    
+    /* Para telas muito pequenas */
+    @media (max-width: 480px) {
+      .page-header {
+        padding: 30px 20px !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+      }
+      
+      .page-header h1 {
+        font-size: 1.9rem !important;
+      }
+      
+      .page-header p {
+        font-size: 1rem !important;
+      }
+      
+      .btn {
+        padding: 12px 25px !important;
+        font-size: 0.95rem !important;
+      }
+    }
+    
+    /* Otimizações para performance mobile */
+    @media (max-width: 768px) {
+      /* Reduzir blur para melhor performance */
+      .page-header {
+        backdrop-filter: blur(20px) !important;
+      }
+      
+      /* Simplificar animações em dispositivos móveis */
+      .page-header::before {
+        animation-duration: 6s !important;
+      }
+      
+      .page-header::after {
+        animation-duration: 20s !important;
+      }
+    }
+    
+    /* Para usuários que preferem menos movimento */
+    @media (prefers-reduced-motion: reduce) {
+      .page-header::before,
+      .page-header::after,
+      .btn,
+      h1, h2, h3, h4 {
+        animation: none !important;
+      }
+      
+      .page-header:hover,
+      .btn:hover {
+        transform: none !important;
+      }
+    }
+  </style>
   <link rel="preload" href="../Aba Quem somos/interactions.js" as="script">
 </head>
 <body>
@@ -31,7 +476,7 @@
 
   <main class="container">
     <div class="page-header" data-animate>
-      <h1>Nossa Equipe</h1>
+      <h1 style="background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7, #60A5FA) !important; background-size: 400% 400% !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; animation: gradientMove 3s ease-in-out infinite !important;">Nossa Equipe</h1>
       <p class="typing" data-typing>Três amigos, uma visão compartilhada</p>
       <div class="cta-row">
         <a class="btn btn-secondary" href="../index.html#contato">Fale conosco</a>

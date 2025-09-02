@@ -11,6 +11,49 @@
     <style>
         html { scroll-behavior: smooth; }
         
+        /* Background moderno com partículas - mesmo estilo da página contato */
+        body {
+            background: #0f0f23;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #1a1a2e 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #16213e 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, #0f3460 0%, transparent 50%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Partículas animadas no fundo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 150px;
+            animation: sparkle 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        
         /* Layout vertical - uma seção embaixo da outra */
         main.container {
             max-width: 1200px;
@@ -25,7 +68,70 @@
         
         .hero {
             text-align: center;
-            padding: 60px 0;
+            padding: 80px 0 60px;
+        }
+        
+        /* Hero modernizado */
+        .hero .tag {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero .headline {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7, #60A5FA);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Aplicar gradiente animado em mais elementos */
+        .services-preview h3,
+        .service-card h4,
+        .action-card h4,
+        .cta-section h3,
+        .brand-name {
+            background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7, #60A5FA);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 4s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+        
+        /* Ícones com cor sólida azul */
+        .service-icon,
+        .card-icon {
+            color: #60A5FA;
+            filter: drop-shadow(0 4px 12px rgba(96, 165, 250, 0.3));
         }
         
         .services-preview,
@@ -36,6 +142,78 @@
             clear: both;
         }
         
+        /* Cards modernizados */
+        .service-cards,
+        .cards {
+            display: grid;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .service-card,
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 30px 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover,
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.15);
+        }
+        
+        /* CTA Section modernizada */
+        .cta-section .cta-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-section h3 {
+            background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 3s ease-in-out infinite;
+            margin-bottom: 15px;
+        }
+        
+        /* Botão CTA modernizado */
+        .cta-button {
+            background: linear-gradient(135deg, #4C1D95, #7C3AED, #A855F7);
+            background-size: 300% 300%;
+            animation: gradientMove 3s ease-in-out infinite;
+            padding: 18px 35px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(124, 58, 237, 0.4);
+            background: linear-gradient(135deg, #7C3AED, #4C1D95, #A855F7);
+        }
+        
         /* Responsivo */
         @media (max-width: 768px) {
             main section {
@@ -43,7 +221,15 @@
             }
             
             .hero {
-                padding: 40px 0;
+                padding: 60px 0 40px;
+            }
+            
+            .hero .headline {
+                padding: 30px 25px;
+            }
+            
+            .cta-section .cta-content {
+                padding: 40px 25px;
             }
             
             main.container {
